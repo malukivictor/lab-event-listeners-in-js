@@ -1,29 +1,31 @@
-// Function to change the background color when a button is clicked
+// Handle Button Clicks
+
+// Changes the background color of the page when a button is clicked
 function changeBackgroundColor() {
-  const colors = ['#fce4ec', '#e3f2fd', '#e8f5e9', '#fff3e0', '#ede7f6'];
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
-  document.body.style.backgroundColor = randomColor;
+  const colors = ['#fce4ec', '#e3f2fd', '#e8f5e9', '#fff3e0', '#ede7f6']
+  const randomColor = colors[Math.floor(Math.random() * colors.length)]
+  document.body.style.backgroundColor = randomColor
 }
 
-// Function to reset the background color when the button is double-clicked
+// Resets the background color to white
 function resetBackgroundColor() {
-  document.body.style.backgroundColor = 'white';
+  document.body.style.backgroundColor = 'white'
 }
 
-// Function to display the key pressed by the user
+// Updates a paragraph to display the key pressed by the user
 function displayKeyPress(event) {
   const keyPressDisplay = document.getElementById('keyPressDisplay')
-  keyPressDisplay.textContent = `Key pressed: "${event.key}" (code: ${event.code})`;
+  keyPressDisplay.textContent = `Key pressed: "${event.key}" (code: ${event.code})`
 }
 
-// Function to display user input in real-time
+// Shows real-time input in a paragraph as the user types into a text field
 function displayUserInput() {
   const textInput = document.getElementById('textInput')
   const textInputDisplay = document.getElementById('textInputDisplay')
-  textInputDisplay.textContent = `You typed: ${textInput.value}`;
+  textInputDisplay.textContent = `You typed: ${textInput.value}`
 }
 
-// Function to handle combined interactions on the color button and text input
+// Integrates button clicks, key presses, and text input into one function
 function handleCombinedInteraction(event) {
   const keyPressDisplay = document.getElementById('keyPressDisplay')
   const textInput = document.getElementById('textInput')
@@ -38,35 +40,30 @@ function handleCombinedInteraction(event) {
   }
 }
 
-// Function to handle button hover (bonus)
+// Bonus: highlights a button on mouseover
 function handleButtonHover(event) {
   event.target.style.opacity = '0.7'
 }
 
-// Function to handle button unhover (bonus)
+// Bonus: restores a button on mouseout
 function handleButtonUnhover(event) {
   event.target.style.opacity = '1'
 }
 
-// Attach Event Listeners
+// Attaches all event listeners
 function setupEventListeners() {
-  // Attach event listener to change background color when the button is clicked
   document
     .getElementById('changeColorButton')
     .addEventListener('click', changeBackgroundColor)
 
-  // Attach event listener to reset background color when the button is double-clicked
   document
     .getElementById('resetColorButton')
     .addEventListener('dblclick', resetBackgroundColor)
 
-  // Attach event listener to display key pressed when a key is pressed down
   document.addEventListener('keydown', displayKeyPress)
 
-  // Attach event listener to display user input in real-time as they type
   document.getElementById('textInput').addEventListener('input', displayUserInput)
 
-  // Combine multiple events: layer extra listeners onto existing elements
   document
     .getElementById('changeColorButton')
     .addEventListener('click', handleCombinedInteraction)
@@ -77,7 +74,6 @@ function setupEventListeners() {
     .getElementById('textInput')
     .addEventListener('input', handleCombinedInteraction)
 
-  // Bonus: hover effects on both buttons
   const buttons = [
     document.getElementById('changeColorButton'),
     document.getElementById('resetColorButton'),
@@ -88,7 +84,6 @@ function setupEventListeners() {
   })
 }
 
-// Initialize event listeners when the DOM is loaded
 if (typeof window !== 'undefined') {
   document.addEventListener('DOMContentLoaded', setupEventListeners)
 }
@@ -97,8 +92,9 @@ module.exports = {
   changeBackgroundColor,
   resetBackgroundColor,
   displayKeyPress,
+  displayUserInput,
   handleCombinedInteraction,
   handleButtonHover,
-  displayUserInput,
+  handleButtonUnhover,
   setupEventListeners,
 }
